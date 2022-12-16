@@ -14,6 +14,7 @@ function Meme() {
         const memes = memeImages.data.memes;
         const randomMeme = memes[Math.floor(Math.random() * memes.length)].url;
         setMeme(prevMeme => ({...prevMeme, randomImage: randomMeme}));
+
     }
     return (
         <main>
