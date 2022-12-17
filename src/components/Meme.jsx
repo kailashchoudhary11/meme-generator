@@ -20,7 +20,7 @@ function Meme() {
         <main>
             <div className="form">
                 <input 
-                className="form--input" type="text" placeholder="Top Text"
+                className="form--input" type="text" placeholder="Top Text" 
                 />
                 <input 
                 className="form--input" type="text" placeholder="Bottom Text"
