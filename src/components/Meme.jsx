@@ -6,8 +6,14 @@ function Meme() {
     const [meme, setMeme] = React.useState({
         topText: "",
         bottomText: "",
-        randomImage: "",
+        randomImage: "http://i.imgflip.com/1bij.jpg",
     });
+
+    function handleChange(event) {
+        const {name, value} = event.target;
+        setMeme(prevMeme => ({...prevMeme, [name]: value}))
+    }
+
     const [memeImages, setMemeImages] = React.useState(memesData);
 
     function getMemeImage() {
@@ -20,22 +26,32 @@ function Meme() {
         <main>
             <div className="form">
                 <input 
-                className="form--input" type="text" placeholder="Top Text" 
+                    className="form--input" 
+                    type="text"
+                    placeholder="Top Text" 
+                    name="bottomText"
+                    value={meme.bottomText}
+                    onChange={handleChange}
                 />
                 <input 
-                className="form--input" type="text" placeholder="Bottom Text"
+                    className="form--input" 
+                    type="text" 
+                    placeholder="Bottom Text"
+                    name="topText"
+                    value={meme.topText}
+                    onChange={handleChange}
                 />
-                <button className="form--button" onClick={getMemeImage}>
+                <button 
+                    className="form--button" 
+                    onClick={getMemeImage}>
                     Get a new meme image  🖼
                 </button>
             </div>
-            {meme.randomImage && 
-                <img 
-                    src={meme.randomImage} 
-                    alt="Random Meme" 
-                    className="meme--img"
-                />
-            }
+            <div className="meme">
+                <img src={meme.randomImage} className="meme--image" />
+                <h2 className="meme--text top">{meme.bottomText}</h2>
+                <h2 className="meme--text bottom">{meme.topText}</h2>
+            </div>
         </main>
     );
 }
