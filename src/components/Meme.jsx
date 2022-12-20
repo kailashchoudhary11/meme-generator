@@ -16,9 +16,13 @@ function Meme() {
     const [allMemes, setAllMemes] = React.useState([]);
 
     React.useEffect(() => {
-        fetch("https://api.imgflip.com/get_memes")
-        .then(response => response.json())
-        .then(data => setAllMemes(data.data.memes));
+        async function getMemes() {
+            const resp = await fetch("https://api.imgflip.com/get_memes");
+            const data = await resp.json();
+            console.log(data);
+            setAllMemes(data.data.memes);
+        }
+        getMemes();
     }, []);
 
     function getMemeImage() {
